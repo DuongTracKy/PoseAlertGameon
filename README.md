@@ -1,4 +1,4 @@
-# 🛡️ PoseAlertGameon - Hệ thống AIoT Giám Sát Tư Thế Ngồi
+# 🐱‍💻 Hệ thống AIoT Giám Sát và Cải thiện Tư Thế Ngồi
 
 Dự án AIoT chạy trên trình duyệt giúp nhận diện, cảnh báo và cải thiện tư thế ngồi, tích hợp bộ đếm Pomodoro bảo vệ sức khỏe cột sống.
 
