@@ -4,8 +4,8 @@ Dự án AIoT chạy trên trình duyệt giúp nhận diện, cảnh báo và c
 
 ## 👥 Thành viên nhóm & Phân công công việc
 * **Phạm Gia Hưng (Web developer):** Phát triển giao diện Web (Frontend) & xử lý logic ứng dụng trên Glitch/CodePen.
-* **Bạn A (AI Engineer):** Thu thập dữ liệu hình ảnh, huấn luyện mô hình nhận diện 4 tư thế ngồi trên Teachable Machine.
-* **Bạn N (IoT Core):** Thiết kế cấu hình kênh Cloud ThingSpeak và làm mạch giả lập thiết bị ngoại vi trên Wokwi.
+* **Nguyễn Đức Khoa (AI Engineer):** Thu thập dữ liệu hình ảnh, huấn luyện mô hình nhận diện 4 tư thế ngồi trên Teachable Machine.
+* **Phạm Văn Duy Khánh (IoT Core):** Thiết kế cấu hình kênh Cloud ThingSpeak và làm mạch giả lập thiết bị ngoại vi trên Wokwi.
 * **Dương Trác Kỳ (Technical Writer & Project manager):** Quản lý dự án, viết file Báo cáo (3-5 trang) và chuẩn bị Slide thuyết trình 5 phút.
 
 ## 🛠️ Công cụ sử dụng
