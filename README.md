@@ -1,19 +1,20 @@
-# 🐱‍💻 Hệ thống AIoT Giám Sát và Cải thiện Tư Thế Ngồi
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
 
-Dự án AIoT chạy trên trình duyệt giúp nhận diện, cảnh báo và cải thiện tư thế ngồi, tích hợp bộ đếm Pomodoro bảo vệ sức khỏe cột sống.
+# Run and deploy your AI Studio app
 
-## 👥 Thành viên nhóm & Phân công công việc
-* **Phạm Gia Hưng (Web developer):** Phát triển giao diện Web (Frontend) & xử lý logic ứng dụng trên Glitch/CodePen.
-* **Nguyễn Đức Khoa (AI Engineer):** Thu thập dữ liệu hình ảnh, huấn luyện mô hình nhận diện 4 tư thế ngồi trên Teachable Machine.
-* **Phạm Văn Duy Khánh (IoT Core):** Thiết kế cấu hình kênh Cloud ThingSpeak và làm mạch giả lập thiết bị ngoại vi trên Wokwi.
-* **Dương Trác Kỳ (Technical Writer & Project manager):** Quản lý dự án, viết file Báo cáo (3-5 trang) và chuẩn bị Slide thuyết trình 5 phút.
+This contains everything you need to run your app locally.
 
-## 🛠️ Công cụ sử dụng
-* **AI:** Google Teachable Machine (TensorFlow.js)
-* **IoT & Cloud:** Wokwi Simulator, ThingSpeak Cloud
-* **Web Demo Host:** Glitch / CodePen
+View your app in AI Studio: https://ai.studio/apps/074695af-ce0d-4965-aadc-1db3c517499c
 
-## 🔗 Liên kết sản phẩm (Sẽ cập nhật khi có)
-* Link Live Demo (Glitch): [Đang cập nhật...]
-* Link Kênh Cloud (ThingSpeak): [Đang cập nhật...]
-* Link Giả lập mạch (Wokwi): [Đang cập nhật...]
+## Run Locally
+
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
