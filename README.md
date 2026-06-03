@@ -1,35 +1,19 @@
-{
-  "name": "react-example",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
-    "preview": "vite preview",
-    "clean": "rm -rf dist server.js",
-    "lint": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@google/genai": "^2.4.0",
-    "@tailwindcss/vite": "^4.1.14",
-    "@vitejs/plugin-react": "^5.0.4",
-    "lucide-react": "^0.546.0",
-    "react": "^19.0.1",
-    "react-dom": "^19.0.1",
-    "vite": "^6.2.3",
-    "express": "^4.21.2",
-    "dotenv": "^17.2.3",
-    "motion": "^12.23.24"
-  },
-  "devDependencies": {
-    "@types/node": "^22.14.0",
-    "autoprefixer": "^10.4.21",
-    "esbuild": "^0.25.0",
-    "tailwindcss": "^4.1.14",
-    "tsx": "^4.21.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.3",
-    "@types/express": "^4.17.21"
-  }
-}
+# 🐱‍💻 Hệ thống AIoT Giám Sát và Cải thiện Tư Thế Ngồi
+
+Dự án AIoT chạy trên trình duyệt giúp nhận diện, cảnh báo và cải thiện tư thế ngồi, tích hợp bộ đếm Pomodoro bảo vệ sức khỏe cột sống.
+
+## 👥 Thành viên nhóm & Phân công công việc
+* **Phạm Gia Hưng (Web developer):** Phát triển giao diện Web (Frontend) & xử lý logic ứng dụng trên Glitch/CodePen, thiết kế cấu hình kênh Cloud ThingSpeak và làm mạch giả lập thiết bị ngoại vi trên Wokwi.
+* **Dương Trác Kỳ (Project manager):** 
+* **Nguyễn Đức Khoa:** Train mô hình
+* **Phạm Văn Duy Khánh:** Viết báo cáo và làm bài thuyết trình 
+
+## 🛠️ Công cụ sử dụng
+* **AI:** Google Teachable Machine (TensorFlow.js)
+* **IoT & Cloud:** Wokwi Simulator, ThingSpeak Cloud
+* **Web Demo Host:** Glitch / CodePen
+
+## 🔗 Liên kết sản phẩm (Sẽ cập nhật khi có)
+* Link Live Demo (Glitch): [Đang cập nhật...]
+* Link Kênh Cloud (ThingSpeak): [Đang cập nhật...]
+* Link Giả lập mạch (Wokwi): [Đang cập nhật...]
