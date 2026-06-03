@@ -206,6 +206,7 @@ export default function App() {
   const audioContextRef = useRef<AudioContext | null>(null);
   const beepIntervalRef = useRef<any>(null);
   const badPostureTimerRef = useRef<any>(null);
+  const hasTriggeredWarningRef = useRef<boolean>(false);
 
   // Khởi động Audio Context khi người dùng tương ứng click
   const initAudio = () => {
@@ -294,27 +295,28 @@ export default function App() {
     let interval: any = null;
     if (isTimerRunning) {
       interval = setInterval(() => {
-        setTimeRemaining(prev => {
-          if (prev <= 1) {
-            // Hết giờ! Chuyển đổi trạng thái Pomodoro
-            playPomodoroCompletionSound();
-            if (pomodoroMode === 'focus') {
-              setPomodoroMode('break');
-              setCompletedCycles(c => c + 1);
-              setCurrentCycleGoodSeconds(0);
-              return breakLength * 60;
-            } else {
-              setPomodoroMode('focus');
-              setCurrentCycleGoodSeconds(0);
-              return focusLength * 60;
-            }
-          }
-          return prev - 1;
-        });
+        setTimeRemaining(prev => (prev > 0 ? prev - 1 : 0));
       }, 1000);
     }
     return () => clearInterval(interval);
-  }, [isTimerRunning, pomodoroMode, focusLength, breakLength, isSoundEnabled]);
+  }, [isTimerRunning]);
+
+  // Bộ giám sát chuyển chế độ Pomodoro và kết thúc chu kỳ khi hết giờ
+  useEffect(() => {
+    if (timeRemaining === 0 && isTimerRunning) {
+      playPomodoroCompletionSound();
+      if (pomodoroMode === 'focus') {
+        setPomodoroMode('break');
+        setCompletedCycles(c => c + 1);
+        setCurrentCycleGoodSeconds(0);
+        setTimeRemaining(breakLength * 60);
+      } else {
+        setPomodoroMode('focus');
+        setCurrentCycleGoodSeconds(0);
+        setTimeRemaining(focusLength * 60);
+      }
+    }
+  }, [timeRemaining, isTimerRunning, pomodoroMode, focusLength, breakLength]);
 
   // Bộ giám sát thời gian tích lũy sức khỏe (mỗi 1 giây cập nhật)
   useEffect(() => {
@@ -405,22 +407,21 @@ export default function App() {
       warnInterval = setInterval(() => {
         setBadPostureDuration(prev => {
           const next = prev + 200;
-          if (next >= WARNING_DELAY) {
-            if (!isWarningActive) {
-              setIsWarningActive(true);
-              setTotalViolations(v => v + 1);
-              // Ghi log
-              const now = new Date();
-              const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-              setViolationLogs(prevLogs => [
-                {
-                  id: Math.random().toString(),
-                  type: CLASS_LABELS[activeClass] || activeClass,
-                  time: timeStr
-                },
-                ...prevLogs.slice(0, 9) // Giữ tối đa 10 log gần đây
-              ]);
-            }
+          if (next >= WARNING_DELAY && !hasTriggeredWarningRef.current) {
+            hasTriggeredWarningRef.current = true;
+            setIsWarningActive(true);
+            setTotalViolations(v => v + 1);
+            // Ghi log
+            const now = new Date();
+            const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+            setViolationLogs(prevLogs => [
+              {
+                id: Math.random().toString(),
+                type: CLASS_LABELS[activeClass] || activeClass,
+                time: timeStr
+              },
+              ...prevLogs.slice(0, 9) // Giữ tối đa 10 log gần đây
+            ]);
           }
           return next;
         });
@@ -429,13 +430,14 @@ export default function App() {
       // Ngồi đúng => Reset ngay lập tức
       setBadPostureDuration(0);
       setIsWarningActive(false);
+      hasTriggeredWarningRef.current = false;
       stopBeepAlarm();
     }
 
     return () => {
       if (warnInterval) clearInterval(warnInterval);
     };
-  }, [activeClass, isWarningActive]);
+  }, [activeClass]);
 
   // Kích hoạt/tắt còi alarm theo trạng thái `isWarningActive`
   useEffect(() => {
@@ -1607,7 +1609,7 @@ export default function App() {
                   </div>
                   <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-850 text-center flex flex-col justify-between">
                     <span className="block text-[9px] text-slate-500 font-bold uppercase tracking-wide leading-tight mb-2">Số lỗi vi phạm</span>
-                    <span className="block font-mono text-xl font-extrabold text-rose-450">
+                    <span className="block font-mono text-xl font-extrabold text-rose-400">
                       {totalViolations}
                     </span>
                     <span className="text-[9px] text-slate-600 mt-1 block font-mono">LẦN CẢNH BÁO</span>
